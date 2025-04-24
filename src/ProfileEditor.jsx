@@ -5,9 +5,15 @@ export default function ProfileEditor() {
   const [isSaving, setIsSaving] = useState(false);
 
   const handleNameChange = (e) => {
-    user.name = e.target.value;
-    setUser(user);
+    const value = e.target.value
+    setUser((initialUser) => ({
+      ...initialUser,
+      name: value,
+      age: initialUser.age + 1
+    }))
   };
+
+  console.log(user)
 
   const handleSave = () => {
     setIsSaving(true);
@@ -15,7 +21,7 @@ export default function ProfileEditor() {
   };
 
   return (
-    <div className="p-4 bg-gray-100 rounded-lg">
+    <div className="p-4 bg-gray-100 rounded-lg w-full flex items-center justify-center">
       <input
         type="text"
         value={user.name}
